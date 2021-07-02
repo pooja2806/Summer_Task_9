@@ -1,0 +1,51 @@
+*{
+	margin: 0; padding: 0; box-sizing: border-box;
+	font-family: 'Josefin Sans',sans-serif;
+
+}
+.scene{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(#111425,#1d1e22);
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.scene i{
+    position: absolute;
+    background: #fff;
+    border-radius: 80%;
+    animation: animate linear infinite;  
+}
+@keyframes animate{
+    0%
+    {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    10%, 90%
+    {
+        opacity:1;
+    }
+    100%
+    {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+}
+.astrogif img{
+	float: right;
+	width: 190px;
+	height: 200px;
+	position: absolute;
+	top:10px;
+	right: 15px;
+ 
+}
+
+
+  
+
+    
+
