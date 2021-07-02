@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="new1.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+</head>
+<style>
+  .start #input{
+    color:rgb(44, 43, 43);
+    font-size: 30px;
+    text-shadow: 3px 2px 4px rgb(207, 19, 19);
+    float: left;
+    margin-top: 20px;
+    width: 200px;
+    height: 43px;
+    position: absolute;
+    top:170px;
+    right: 650px;
+    box-sizing: border-box; 
+    background-color:lemonchiffon;
+    border-bottom: 2px solid rgb(3, 3, 3); 
+  }
+
+   h1{
+    font-size: 40px;
+    right:650px;
+    float: center;
+    color:wheat;
+    text-shadow: 5px 2px 4px blue;
+    text-transform:uppercase;
+    top: 60px;
+    position:absolute;
+ }
+
+  #out{
+    color: red;
+    font-size: 18px;
+    width:340px;
+    height:130px;
+    top:300px;
+    left:510px;
+    position:absolute;
+    box-shadow:0 8px 32px 0 wheat;
+    border-radius:10px;
+    border:1px solid crimson;
+  }
+  .start:before{
+    content:'';
+    position: absolute;
+    top:0;
+    left:0;
+    width:5%;
+    height: 5%;
+    pointer-events: none;
+}
+.start:after{
+    content: '';
+    position: absolute;
+    top: 0.1px;
+    bottom: 0.1px;
+    left: 0.1px;
+    right: 0.1px;
+    background-image: linear-gradient(5deg,#eb3367,#53ad0e);
+    pointer-events: none;
+    animation: animatenew 10s linear infinite;    
+}
+@keyframes animatenew{
+    0%
+    {
+        filter:blur(550px) hue-rotate(0deg);
+        
+    }
+    100%
+    {
+        filter:blur(550px) hue-rotate(360deg);
+    }
+}
+.tx{
+    color: white;
+    text-shadow: 5px 2px 4px crimson;
+    font-size: 20px;
+    float: left;
+    margin-top: 20px;
+    position: absolute;
+	  top:176px;
+	  right: 890px; 
+}
+
+button{
+  float: left;
+  position: absolute;
+	top:189px;
+	right: 590px; 
+
+  width: 100px;
+	padding: 10px;
+  font-size: 15px;
+  color:rgb(202, 42, 77);
+  font-weight:300px;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition:1.5s;
+	left: 750px;
+}
+button:hover{
+	box-shadow: 0 5px 50px 0 rgb(48, 162, 177) inset, 0 5px 50px 0 rgb(48, 162, 177) inset,
+	            0 5px 50px 0 rgb(48, 162, 177),  0 5px 50px 0  rgb(48, 162, 177) inset;
+    text-shadow: 0 0 5px rgb(14, 12, 39) ,0 0 5px rgb(14, 12, 39) ;
+}
+.doc img{
+	float: right;
+	width: 190px;
+	height: 200px;
+	position: absolute;
+	top:10px;
+	right: 15px;
+}   
+/*.p{
+	color:white;
+	text-shadow: 5px 2px 4px rgb(108,190,211);
+	font-size: 15px;
+	font-weight:600;
+	float:center;
+	margin: 30px 0 20px 0;
+        position:absolute;      
+        top:200px;
+	right:500px;
+	text-transform:uppercase;
+}*/
+
+
+
+</style>
+<body>
+    <div class="scene">
+        <div class="moon"></div>
+    </div>
+    <div class="p">
+	    <h1>Task 9</h1><span class="change_content"></span>
+    </div>
+    <div class="tx">
+      <h3 class="animated infinite heartBeat">Enter Your Command</h3>
+    </div>
+    <div class="l" id="out"><h3>OUTPUT</h3></div>
+
+</body>
+
+<script type="text/javascript">
+function f1()
+{
+  var i=document.getElementById("input").value; 
+  if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("create")) || (i.includes("generate")) || (i.includes("build")))) {
+                var image = prompt("Enter Image Name: ")
+                var pname = prompt("Enter Pod Name: ")
+                var query = "kubectl run " + pname + " --image=" + image;
+            }
+
+            else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("create")) || (i.includes("generate")) || (i.includes("build")))) {
+                var image = prompt("Enter Image Name: ")
+                var dname = prompt("Enter Deployment Name: ")
+                var query = "kubectl create deployment " + dname + " --image=" + image;
+            }
+
+
+            else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("expose")) || (i.includes("display")))) {
+                var dname = prompt("Enter Deployment Name To Expose: ")
+                var pno = prompt("Enter Port No: ")
+                var etype = prompt("Enter Expose type:")
+                var query = "kubectl expose deployment " + dname + " --type=" + etype + " --port=" + pno
+            }
+
+            else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("scale")) || (i.includes("increase")) || (i.includes("decrease")) || (i.includes("scale up")) || (i.includes("scale down")))) {
+                var dname = prompt("Enter Deployment Name To Scale-Up/Scale-Down: ")
+                var replica = prompt("Enter Number 0f replicas: ")
+                var query = "kubectl scale deployment " + dname + " --replicas=" + replica
+            }
+
+
+            else if (((i.includes("all")) || (i.includes("everything"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("destroy")))) {
+                var query = "kubectl delete --all all"
+
+            }
+
+            else if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("detach")))) {
+                var pname = prompt("Enter Pod Name To Delete: ")
+                var query = "kubectl delete pod " + pname
+            }
+
+            else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("detach")))) {
+                var dname = prompt("Enter Deployment Name To Delete: ")
+                var query = "kubectl delete deployment " + dname
+            }
+
+            else if (((i.includes("services")) || (i.includes("services")) || (i.includes("svc"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("destroy")))) {
+                var sname = prompt("Enter SVC Name To Delete: ")
+                var query = "kubectl delete svc " + sname
+
+            }
+
+            else if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("show")) || (i.includes("get")) || (i.includes("list")))) {
+                var query = "kubectl get pods"
+
+            }
+
+
+            else if (((i.includes("deployments")) || (i.includes("deployment")) || (i.includes("deploy"))) && ((i.includes("show")) || (i.includes("get")) || (i.includes("list")))) {
+                var query = "kubectl get deploy"
+
+            }
+
+            else if (((i.includes("services")) || (i.includes("services")) || (i.includes("svc"))) && ((i.includes("show")) || (i.includes("get")) || (i.includes("list")))) {
+                var query = " kubectl get svc"
+
+            }
+
+            else if (((i.includes("IP")) || (i.includes("ip")) || (i.includes("Ip"))) && ((i.includes("kubernetes")) || (i.includes("k8s")) || (i.includes("cluster")))) {
+                var query = "ip"
+
+            }
+
+            else if (((i.includes("dashboard")) || (i.includes("Dashboard")) || (i.includes("webui"))) && ((i.includes("kubernetes")) || (i.includes("k8s")) || (i.includes("cluster")))) {
+                var query = "dashboard"
+
+            }
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://Your_Public_IP_Of_Instance/cgi-bin/a.py?x=" + query , "true");
+            xhr.send();
+            xhr.onload = function () {
+                var output = xhr.responseText;
+                document.getElementById('out').innerHTML = output;
+            };
+
+
+
+        }
+
+function stars(){
+let count = 900;
+let scene = document.querySelector('.scene');
+let i=0;
+        while(i < count){
+          let star = document.createElement("i");
+          let x= Math.floor(Math.random() * window.innerWidth);
+          let y= Math.floor(Math.random() * window.innerWidth);
+          let duration = Math.random() *10;
+          let size = Math.random() *2; 
+
+          star.style.left = x+'px';
+          star.style.top = y+'px';
+          star.style.width = 2+size+'px';
+          star.style.height = 1+size+'px';
+
+          star.style.animationDuration = 2+duration+ 's';
+          star.style.animationDelay=duration+ 's';
+
+          scene.appendChild(star);
+          i++;
+
+          }
+      }
+      stars();
+
+</script>
+    <div class="start">
+	    <div id="nb">
+		    <input id="input"/><button onclick="f1();">CLICK</button>
+            </div>
+    </div>
+    
+</html>
